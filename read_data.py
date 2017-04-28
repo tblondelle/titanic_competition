@@ -21,17 +21,17 @@ PERCENTAGE_TRAIN = 0.9
 
 
 def modify_columns(raw_data):
-	"""
-	Transform the raw data into something pre-processed.
-	
-	More specifically, 
-	  - 'male' and 'female' are turned into -1 and 1,
-	  - 'Age', 'Pclass', 'SibSb', 'Fare', 'Parch' are centered
-	  	and normalized,
-	  - 'Name' is checked if it contains special titles for people
-	  	(like Master, Miss, Col, Reverend...) that may be 
-	  	susceptible to influence their survival.
-	"""
+    """
+    Transform the raw data into something pre-processed.
+    
+    More specifically, 
+      - 'male' and 'female' are turned into -1 and 1,
+      - 'Age', 'Pclass', 'SibSb', 'Fare', 'Parch' are centered
+        and normalized,
+      - 'Name' is checked if it contains special titles for people
+        (like Master, Miss, Col, Reverend...) that may be 
+        susceptible to influence their survival.
+    """
 	
     # Transform 'female' into 1 and 'male' into -1.
     raw_data.ix[raw_data.Sex == 'female', 'Sex'] = 1
@@ -63,7 +63,6 @@ def modify_columns(raw_data):
     raw_data.set_index("PassengerId", inplace=True)
     
     return raw_data
-
 
 def transform_raw_data(raw_data, percentage_train):
     """
@@ -122,9 +121,9 @@ def get_new_batch(n_lines):
 
 
 def get_test_data():
-	"""
-	Returns the couple (test_set_x, test_set_y).
-	"""
+    """
+    Returns the couple (test_set_x, test_set_y).
+    """
 
     raw_data = pd.read_csv("./data/train.csv")
     
@@ -134,9 +133,9 @@ def get_test_data():
 
 
 def get_submit_data():
-	"""
-	Returns the submit set x.
-	"""
+    """
+    Returns the submit set x.
+    """
 
     raw_submit_data = pd.read_csv("./data/test.csv")
     raw_submit_data = modify_columns(raw_submit_data)
@@ -146,8 +145,7 @@ def get_submit_data():
     
 
 if __name__ == '__main__':
-   
-   	# Some tests.
+    # Some tests.
     a = get_new_batch(2)
     x_batch, y_batch = next(a)
     print("x_batch is:\n", x_batch, '\n')
