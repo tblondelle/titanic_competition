@@ -31,7 +31,7 @@ def train():
 
         # Create model.
         print('Creating model...')
-        model = Model() ## <--
+        model = Model()
 
         # Define Training procedure.
         global_step = tf.Variable(0, name="global_step", trainable=False)
@@ -116,4 +116,4 @@ def train():
 
 if __name__ == '__main__':
     train()
-        
+

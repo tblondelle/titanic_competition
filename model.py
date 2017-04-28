@@ -26,13 +26,11 @@ def layer(input_size, output_size, x, name="simple_layer"):
 
 class SimpleModel():
     
-    def __init__(self):
-        
+    def __init__(self):        
         
         self.input_x = tf.placeholder(tf.float32, [None, 7], name="input_x")
         self.input_y = tf.placeholder(tf.float32, [None, 2], name="input_y")
         
-
         y = layer(7, 32, self.input_x, name="wxb_layer_1")
         y = layer(32, 32, y, name="wxb_layer_2")
         y = layer(32, 32, y, name="wxb_layer_3")
@@ -42,7 +40,6 @@ class SimpleModel():
             self.scores = tf.nn.softmax(y)
             tf.summary.histogram('scores', self.scores)
 
-    
         with tf.variable_scope("results"):
             
             self.cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=self.scores, labels=self.input_y)
@@ -51,15 +48,13 @@ class SimpleModel():
             self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
             tf.summary.scalar('accuracy', self.accuracy)
             
-            
+
 class Model2():
     
     def __init__(self):
-        
-        
+                
         self.input_x = tf.placeholder(tf.float32, [None, 7], name="input_x")
         self.input_y = tf.placeholder(tf.float32, [None, 2], name="input_y")
-        
 
         y = layer(7, 64, self.input_x, name="wxb_layer_1")
         y = layer(64, 64, y, name="wxb_layer_2")
@@ -71,7 +66,6 @@ class Model2():
         with tf.variable_scope("softmax"):
             self.scores = tf.nn.softmax(y)
             tf.summary.histogram('scores', self.scores)
-
     
         with tf.variable_scope("results"):
             
@@ -80,11 +74,3 @@ class Model2():
             correct_prediction = tf.equal(tf.argmax(self.scores, 1), tf.argmax(self.input_y, 1))
             self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
             tf.summary.scalar('accuracy', self.accuracy)
-        
-
-            
-            
-            
-            
-            
-            
